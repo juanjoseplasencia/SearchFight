@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchFight", "SearchFight\SearchFight.csproj", "{C7530265-CBF1-41AD-8444-685BB4E22882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchLibrary", "SearchLibrary\SearchLibrary.csproj", "{D1FEB84E-35A0-4DDD-9026-DA929AB2B9D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchLibraryTest", "SearchLibraryTest\SearchLibraryTest.csproj", "{55577703-897D-42B0-A1C8-8FB1CFA6755E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7530265-CBF1-41AD-8444-685BB4E22882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7530265-CBF1-41AD-8444-685BB4E22882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7530265-CBF1-41AD-8444-685BB4E22882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7530265-CBF1-41AD-8444-685BB4E22882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FEB84E-35A0-4DDD-9026-DA929AB2B9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FEB84E-35A0-4DDD-9026-DA929AB2B9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FEB84E-35A0-4DDD-9026-DA929AB2B9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FEB84E-35A0-4DDD-9026-DA929AB2B9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55577703-897D-42B0-A1C8-8FB1CFA6755E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55577703-897D-42B0-A1C8-8FB1CFA6755E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55577703-897D-42B0-A1C8-8FB1CFA6755E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55577703-897D-42B0-A1C8-8FB1CFA6755E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
