@@ -8,6 +8,12 @@ namespace SearchLibrary
 {
     public class SearchManager
     {
+        /// <summary>
+        /// Performs the search for a search term (programming language) over the set of search Engines
+        /// </summary>
+        /// <param name="searchEngines">Id of analysis</param>
+        /// <param name="searchTerm">Cancellation token</param>
+        /// <returns>Results of search by search engine</returns>
         public Dictionary<string, long> Search(List<ISearchEngine> searchEngines, string searchTerm)
         {
             Dictionary<string, long> results = new Dictionary<string, long>();
@@ -21,7 +27,11 @@ namespace SearchLibrary
             return results;
         }
 
-        public List<ISearchEngine> BuildSearchEnginesList(List<string> searchEngineNames) {
+        /// <summary>
+        /// Builds the list of searchEngine objects from which the search operation will be invoked. It uses as input a set of "search engine definitions" from a json file
+        /// </summary>
+        /// <returns>List of search engines</returns>
+        public List<ISearchEngine> BuildSearchEnginesList() {
             List<ISearchEngine> searchEngines = new List<ISearchEngine>();
             using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/SearchEngines.json"))
             {
@@ -49,10 +59,15 @@ namespace SearchLibrary
             return searchEngines;
         }
 
-        public Dictionary<string, Dictionary<string, long>> BuildResults(List<string> progLangs, List<string> searchEngineNames) {
+        /// <summary>
+        /// Builds the list of search results for all the programming languages and search engines.
+        /// </summary>
+        /// <param name="progLangs">List of programming languages to search for</param>
+        /// <param name="searchEngines">List of search engines to search with</param>
+        /// <returns>Results of search by programming language</returns>
+        public Dictionary<string, Dictionary<string, long>> BuildResults(List<string> progLangs, List<ISearchEngine> searchEngines) {
             Dictionary<string, Dictionary<string, long>> fullResults = new Dictionary<string, Dictionary<string, long>>();
             int total = progLangs.Count;
-            var searchEngines = BuildSearchEnginesList(searchEngineNames);
             foreach (var progLang in progLangs)
             {
                 var results = Search(searchEngines, progLang);
@@ -61,21 +76,31 @@ namespace SearchLibrary
             return fullResults;
         }
 
+        /// <summary>
+        /// Organizes the results of search by search engine to rank which programming language has more results and show it
+        /// </summary>
+        /// <param name="fullResults">Search results by programming language</param>
+        /// <param name="searchEngines">List of search engines to search with</param>
+        /// <returns>Results of search grouped by search engine</returns>
         public Dictionary<string,string> BuildResultsBySearchEngine(Dictionary<string, Dictionary<string, long>> fullResults,
-            List<string> searchEngineNames)
-        {
+            List<ISearchEngine> searchEngines) {
             Dictionary<string, string> results = new Dictionary<string, string>();
-            foreach (var name in searchEngineNames)
+            foreach (var item in searchEngines)
             {
-                var resultsBySearchEngine = fullResults.Where(R => R.Value.Keys.Contains(name)).ToDictionary(R => R.Key, R => R.Value[name]);
+                var resultsBySearchEngine = fullResults.Where(R => R.Value.Keys.Contains(item.Name)).ToDictionary(R => R.Key, R => R.Value[item.Name]);
                 if (resultsBySearchEngine.Any()) { 
                     long languageWinner = resultsBySearchEngine.Values.Max();
-                    results.Add(name, resultsBySearchEngine.First(R => R.Value == languageWinner).Key);
+                    results.Add(item.Name, resultsBySearchEngine.First(R => R.Value == languageWinner).Key);
                 }
             }
             return results;
         }
 
+        /// <summary>
+        /// Gets the programming language on the top of count of search results
+        /// </summary>
+        /// <param name="fullResults">Search results by programming language</param>
+        /// <returns>Results of search by search engine</returns>
         public string BuildTotalWinner(Dictionary<string, Dictionary<string, long>> fullResults)
         {
             string winner = string.Empty;

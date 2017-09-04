@@ -10,17 +10,16 @@ namespace SearchFight
         static void Main(string[] args)
         {
             List<string> theProgLangs = args.ToList();
-            List<string> searchEngineNames = new List<string>() { "Google", "Bing" };
             Console.WriteLine();
             Console.Write("The results of programming languages search fight are: ");
             Console.WriteLine();
             SearchManager searchManager = new SearchManager();
-            var fullResults = searchManager.BuildResults(theProgLangs, searchEngineNames);
-            if (fullResults.Count > 0)
-            {
+            var searchEngines = searchManager.BuildSearchEnginesList();
+            var fullResults = searchManager.BuildResults(theProgLangs, searchEngines);
+            if (fullResults.Count > 0) {
                 ShowResults(fullResults);
                 Console.WriteLine();
-                ShowResultsBySearchEngine(searchManager.BuildResultsBySearchEngine(fullResults, searchEngineNames));
+                ShowResultsBySearchEngine(searchManager.BuildResultsBySearchEngine(fullResults, searchEngines));
                 ShowTotalWinner(searchManager.BuildTotalWinner(fullResults));
             }
             else { 
