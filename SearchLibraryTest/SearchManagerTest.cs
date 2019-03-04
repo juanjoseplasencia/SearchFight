@@ -12,10 +12,10 @@ namespace SearchLibraryTest
         [TestMethod]
         public void Search_HappyPath()
         {
-            BuildSearchEnginesTestList();
             SearchTerm = "java";
             SearchManager searchManager = new SearchManager();
             var result = searchManager.Search(SearchEnginesTestList, SearchTerm);
+
             Assert.IsTrue(result.Values.Count > 0, "There were no results from search.");
         }
 
@@ -33,7 +33,6 @@ namespace SearchLibraryTest
         [TestMethod]
         public void Search_SearchTerm_Empty()
         {
-            BuildSearchEnginesTestList();
             SearchTerm = string.Empty;
             SearchManager searchManager = new SearchManager();
             var result = searchManager.Search(SearchEnginesTestList, SearchTerm);
@@ -44,7 +43,6 @@ namespace SearchLibraryTest
         [TestMethod]
         public void Search_SearchTerm_Null()
         {
-            BuildSearchEnginesTestList();
             SearchManager searchManager = new SearchManager();
             var result = searchManager.Search(SearchEnginesTestList, null);
 

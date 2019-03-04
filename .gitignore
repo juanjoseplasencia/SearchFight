@@ -48,3 +48,4 @@ packages
 
 *.user
 src/.vs/
+.vs/
