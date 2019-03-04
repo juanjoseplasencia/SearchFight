@@ -8,15 +8,20 @@ namespace SearchLibrary
     {
         public BingSearchEngine(string name, string url) : base(name,url)
         {
+        }
 
+        public BingSearchEngine() : this("Bing", "http://www.bing.com/search?q=")
+        {
         }
 
         public override long Search(string searchTerm)
         {
             long resultsAsLong = 0;
             if (!string.IsNullOrEmpty(searchTerm)) {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(Url + searchTerm);
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(Url + searchTerm)
+                };
                 HttpResponseMessage response = client.GetAsync(Url + searchTerm).Result;
                 if (response.IsSuccessStatusCode)
                 {
