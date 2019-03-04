@@ -6,6 +6,6 @@ namespace SearchLibrary
     [Serializable]
     public class SearchEnginesList
     {
-        public IList<SearchEngine> SearchEngines { get; set; }
+        public IList<ISearchEngine> SearchEngines { get; set; }
     }
 }

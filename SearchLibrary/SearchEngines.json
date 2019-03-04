@@ -1,5 +1,5 @@
-{ "SearchEngines": [
-{ "Name" : "Google",  "Url" : "http://www.google.com/search?q=", "ClassName" : "GoogleSearchEngine" },
-{ "Name" : "Bing",  "Url" : "http://www.bing.com/search?q=", "ClassName" : "BingSearchEngine" }
-]}
+  [
+    "Google",
+    "Bing"
+  ]
                  
