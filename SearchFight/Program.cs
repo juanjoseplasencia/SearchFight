@@ -14,12 +14,12 @@ namespace SearchFight
             Console.Write("The results of programming languages search fight are: ");
             Console.WriteLine();
             SearchManager searchManager = new SearchManager();
-            var searchEngines = searchManager.BuildSearchEnginesList();
-            var fullResults = searchManager.BuildResults(theProgLangs, searchEngines);
+            var searchEngineNames = searchManager.GetSearchEngineNames();
+            var fullResults = searchManager.BuildResults(theProgLangs, searchEngineNames);
             if (fullResults.Count > 0) {
                 ShowResults(fullResults);
                 Console.WriteLine();
-                ShowResultsBySearchEngine(searchManager.BuildResultsBySearchEngine(fullResults, searchEngines));
+                ShowResultsBySearchEngine(searchManager.BuildResultsBySearchEngine(fullResults, searchEngineNames));
                 ShowTotalWinner(searchManager.BuildTotalWinner(fullResults));
             }
             else { 
@@ -39,7 +39,7 @@ namespace SearchFight
                 Console.Write(":");
                 foreach (var value in result.Value)
                 {
-                    Console.Write(string.Format(" {0}: {1}", value.Key, value.Value));
+                    Console.Write($" {value.Key}: {value.Value}");
                 }
                 total--;
                 Console.WriteLine();
@@ -49,14 +49,14 @@ namespace SearchFight
         private static void ShowResultsBySearchEngine(Dictionary<string, string> results)
         {
             foreach (var result in results) {
-                Console.WriteLine(string.Format("{0} winner : {1}", result.Key, result.Value));
+                Console.WriteLine($"{result.Key} winner : {result.Value}");
             }
         }
 
         private static void ShowTotalWinner(string winner)
         {
             if (!string.IsNullOrEmpty(winner))
-                Console.WriteLine(string.Format("Total winner: {0}", winner));
+                Console.WriteLine($"Total winner: {winner}");
         }
 
     }
